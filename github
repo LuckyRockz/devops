@@ -14,3 +14,8 @@
 
 git config --global user.name "LakshamSai"
 git config --global user.email "lakshmansai741@gmail.com"
+
+**git ignore. 
+
+add the files to .git folder 
+
