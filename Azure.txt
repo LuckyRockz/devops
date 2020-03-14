@@ -1,0 +1,111 @@
+Microsoft 
+   - office 365 cloud 
+   - Microsoft Dynamics (ERP Solution) - enterprise resoure planning. 
+   - Microsoft Azure - Computational cloud. 
+   
+   
+
+Azure 
+  - Computational enterprise Cloud 
+  
+Cloud Computing 
+ - type of computing where you are operating everything i.e compute, storage, database, network, ioc renting on internet and using them. 
+ 
+Multiple types 
+ - public cloud - everything is over internet. [making it available for everyone]
+ - private cloud - it operating over a secure channel which has source and destination restriction 
+ - hybrid cloud - public + private  (datacenter + cloud) , for this guy cloud is a global datacenter maintained and managed by the cloud provider 
+ 
+Eg:- Org 
+     netflix - aws 
+	 mumbai, europe, america 
+ 
+cloud offerings 
+ - IAAS - purely virtual machines, computers on cloud , you are getting machine with os and networking config, after that everything its your responisbility. 
+ 
+ - PAAS - Platform with preinstalled software , platform is maintained by the cloud provider, 
+ 
+ - SAAS - OS, Software is maintained by the cloud provider , you just have to use the software. 
+  
+Azure 
+  - Tenant(Active Directory) 
+      - Management groups 
+	      - subscriptions 
+		      - resource groups 
+			     - resources 
+				 
+
+Types of Services 
+
+1. Idenitity 
+      - Active Directory  
+	         - Database with collection of user information. (Name, contact , email, designation, manager) 
+			   PII / SPII 
+			 - Azure Resources have tighter integration to Active directory 
+			 
+      - IAM 
+	         - Linked with AD / Role based Authenitcation 
+			 - Roles 
+			     - Owner (anything and everything) 
+				 - Contributor (admin and can do everything but cannot do iam ) 
+				 - Reader (He can connect and reda everything) 
+				 
+             - Programatic Authentication using service principal 
+			     - way to authenitcate azyre resources through a role based access control 
+			 - B2B / B2C 
+			    - B2B - Business to Business 
+				- B2C - 
+			 
+2. Compute 
+      - Virtual Machines. 
+      - Scalesets 
+      - Batch 
+      - Container Services 
+      - kubernetes services (AKS) 
+      - Container Registry (ACR) 
+	  - webapps 
+	  - logic apps 
+	  - mobile apps 
+	  - api apps 
+	  - API Management servics 
+	  
+
+3. Storage 
+      - BLOB (S3) 
+	  - Table 
+	  - Queue 
+	  - File 
+	  - Disk 
+	  - Datalake 
+
+4. Network 
+      - Vnet 
+	  - Load balancer/ Application gateway / Azure Front door / Trafffic Manager  
+	  - Virtaul network gateway 
+	  - Express route. 
+	  - Firewall 
+
+5. Security 
+
+6. logging & MOnitoring 
+
+7. EAI - Enterprise Application integration 
+
+8. IOT - Internet of things. 
+
+9. Developer services 
+     - Azure Devops. 
+     - Rest API    
+     - CLI Etc. 
+
+10. Analytics & ML 
+
+11. Other services 
+     - Datafactory 
+	 - Datalake 
+	 - Data bricks 
+	 - Event hubs 
+	 - Notification hubs etc. 
+
+
+	 
