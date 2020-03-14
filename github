@@ -9,6 +9,7 @@
 6. git push - push the code into github for the current brach 
 7. git push origin <branch_name> - it will push to a different branch
 8. git log <filename> 
+9. git rm <filename>
 
 
 "config commands"
