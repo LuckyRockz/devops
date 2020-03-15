@@ -22,11 +22,12 @@ Eg:- Org
  
 cloud offerings 
  - IAAS - purely virtual machines, computers on cloud , you are getting machine with os and networking config, after that everything its your responisbility. 
- 
+    Eg:- Ec2(AMamzon) , Virtual Machines (AZure) 
  - PAAS - Platform with preinstalled software , platform is maintained by the cloud provider, 
- 
+    Eg:- Azure Webapp. 
  - SAAS - OS, Software is maintained by the cloud provider , you just have to use the software. 
-  
+    Eg:- Power BI, Workday, salesforce 
+	
 Azure 
   - Tenant(Active Directory) 
       - Management groups 
@@ -39,7 +40,7 @@ Types of Services
 
 1. Idenitity 
       - Active Directory  
-	         - Database with collection of user information. (Name, contact , email, designation, manager) 
+	         - Database with collection of user information. (Name,userid, contact , email, designation, manager etc ) 
 			   PII / SPII 
 			 - Azure Resources have tighter integration to Active directory 
 			 
@@ -54,10 +55,31 @@ Types of Services
 			     - way to authenitcate azyre resources through a role based access control 
 			 - B2B / B2C 
 			    - B2B - Business to Business 
-				- B2C - 
+				- B2C - Business to customer. 
+				
+	Service Principal 
+	         - if External Applications want to connect to Azure then they can connect using service princiapl. 
+			 - service is w.r.t to resource, rg, subscription also. 
+			 - to create , go to azure add --> apps --> create app registration and give privileges to Service PrinciaPL 
 			 
+			Eg:- Someone is trying to talk to azure databse from external world , you need to give reader access to the db. 
+			
+			Application id:- *******
+            Directory (tenant) ID:- **********
+            Object ID : ************
+			cleitn secret :- *************
+			
+    AD COnnect 
+	        - On Prem , Microsoft Active AD can be be linked / synched to Azure 
+			- Install AD Synch , you should synch with Azure AD. 
+			
+    Enable Multi facrtory authentication 
+	        - AD Password + MFA 
+			
 2. Compute 
-      - Virtual Machines. 
+      - Virtual Machines. - computer on cloud 
+	  
+	  
       - Scalesets 
       - Batch 
       - Container Services 

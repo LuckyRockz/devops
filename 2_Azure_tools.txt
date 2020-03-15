@@ -1,0 +1,11 @@
+How do i interact with Azure. ? 
+ 1. Through Azure Portal. 
+ 2. through cli - Porgramatic access  
+          "az login"
+		  "äz account list"
+ 3. throuigh Powershell 
+          Install-Module Az 
+		  Connect-Azlogin --> Connect to Azure 
+		  
+ 4. through apis (webapi graph api) 
+          
