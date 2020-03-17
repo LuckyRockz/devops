@@ -1,0 +1,42 @@
+Virtual Machines 
+    - Windows & Linux 
+	- Reservations (CAPEX) - Capital Expenditure 
+	- Create 
+	     - CLI 
+		 - API (python / javaapi) - service principal.  
+		 - POWERSHELL - 
+		 - TERRAFORM - IAAC 
+		 - ARM TEmplates. 
+		 - portal 
+		 
+		 
+	Prerqs 
+	   - subscription 
+	   - resource group 
+	   - image (cd)
+       - flavour (instance type)	   
+	   - vnet , subnet 
+	   - type of authentication. 
+	   - Networking. 
+	   - tags (optional) 
+	   
+	VM Series or instance types = https://azure.microsoft.com/en-us/pricing/details/virtual-machines/series/
+	
+	
+	   OS Disk 
+	      - Hard disk linked 
+		  - Network disks 
+	Network Secuerity group - Online firewall 
+	      - Restrict inbound/outbound traffic based on rules 
+		  - both at subnetlevel and at instance level. 
+		  
+		  
+cluster / load balancer. 
+ 
+    load balancer = network trafffic distribution thats it  
+	      algorithms :- lifo, fifo, active active , active passive , round robin, least traffic 
+	    eg:- wifi router 
+    cluster = featruee of application. - hearbeat exchange 
+	
+	  
+		  
