@@ -1,0 +1,75 @@
+Method - 1: Create a Windows VM using Azure CLI (Command Line Interface)
+
+Create a resource group for VM
+	--> az group create --name <createate group name> --location <eastus>
+Next create a new virtual network (VNET)
+	--> az network vnet create --resource-group <group name> --name <create vnet name> --subnet-name <create subnet name>
+Next assigning a public ip address to VM
+	--> az network public-ip create --resource-group <group name> --name <create ip name>
+Next create a new NSG group i.e your firewall
+	--> az network nsg create --resource-group <group name> --name <create nsg name>
+Next create a new NIC for VM
+	--> az network nic create --resource-group <group name> --name <create nic name> --vnet-name <vnet name> --subnet <subnet name> --network-security-group <nsg name> --public-ip-address <ip name>
+Next main target to create a VM
+	--> az vm create --resource-group <group name> --name <create vm name> --location <eastus> --nics <nic name> --image <select image "Win2019DataCenter"> --admin-username <username> --admin-password <password>
+Next give the permission to  connect to a system
+	-->az vm open-port --port <3389> --resource-group <group name> --name <vm name>
+	
+	
+
+	
+Method - 2: Create a Linux VM using Azure CLI (Command Line Interface)
+
+Create a resource group for VM
+	--> az group create --name <create group name> --location <eastus>
+Create a VM
+	--> az vm create --resource-group <group name> --name <create vm name> image <Select image "UbuntuLTS"> --admin-username <username> --admin-password <password>
+Create a Open port 80 for web traffic
+	--> az vm open-port --port <80> --resource-group <group name> --name <vm name>
+To remove the resouce groups
+	--> az group delete --name <group name>
+	
+
+
+	
+Method - 3: Create a Windows VM using Azure Powershell
+
+Create a resource group 
+	--> New-AzResourceGroup -Name <create group name> -Location <EastUS>
+Create a VM and provide names for each of the resources
+	--> New-AzVm -ResourceGroupName <group name> -Name <create vm name> -Location <East US> -Image <select image> -VirtualNetworkName <create vnet name> -SubnetName <create subnet name> -SecurityGroupName <create nsg name> -PublicIpAddressName <create ip name> -OpenPorts <80,3389>
+	After running this command, the New-AzVM cmdlet creates if they don't already exist. 
+	When prompted, provide a username and password to be used as the sign-in credentials for the VM
+Create a connection VM
+	--> Get-AzPublicIpAddress -ResourceGroupName <group name> | Select IpAddress
+To remove the resource groups
+	--> Remove-AzResourceGroup -Name <group name>
+
+	
+
+	
+Method - 4: Create a Linux VM using Azure Powershell
+
+Create a resouce group 
+	--> New-AzResourceGroup -Name <create group name> -Location <EastUS>
+Next create a subnet configuration
+	--> $subnetConfig = New-AzVirtualNetworkSubnetConfig -Name <create subnet name> -AddressPrefix 192.168.1.0/24
+	Run this if you get the breaking change warning {Set-Item Env:\SuppressAzurePowerShellBreakingChangeWarnings "true"}
+Next create a virtual network (VNET)
+	--> $vnet = New-AzVirtualNetwork -ResourceGroupName <group name> -Location <EastUS> -Name <create vnet name> -AddressPrefix 192.168.0.0/16 -Subnet $subnetConfig
+Next create a public IP address and specify a DNS name
+	--> $pip = New-AzPublicIpAddress -ResourceGroupName <group name> -Location <EastUS> -AllocationMethod Static -IdleTimeoutInMinutes 4 -Name "mypublicdns$(Get-Random)"		{mypublic is created name}
+Next create an Azure Network Security Group (NSG) and traffic rule. The Network Security Group secures the VM with inbound and outbound rules
+	--> $nsg = New-AzNetworkSecurityGroup -ResourceGroupName <group name> -Location <EastUS> -Name <create nsg name> -SecurityRules $nsgRuleSSH									{SSH is created name}
+Next create an inbound network security group rule
+	--> $nsgRuleSSH = New-AzNetworkSecurityRuleConfig -Name <nsg name> -Protocol Tcp -Direction Inbound -Priority 1000 -SourceAddressPrefix * -SourcePortRange * -DestinationAddressPrefix * -DestinationPortRange 20 -Access Allow
+Next create a virtual network interface card (NIC) with "New-AzNetworkInterface". The virtual NIC connects the VM to a subnet, Network Security Group, and public IP address.
+	--> $nic = New-AzNetworkInterface -Name <create nic name> -ResourceGroupName <group name> -Location <EastUS> -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $pip.Id -NetworkSecurityGroupId $nsg.Id
+Next define the credentials
+	--> $cred = Get-Credential
+Next create a virtual machine configuration
+	--> $vmConfig = New-AzVMConfig -VMName <create vm name> -VMSize "Standard_A0" | Set-AzVMOperatingSystem -Linux -ComputerName <vm name> -Credential $cred | Set-AzVMSourceImage -PublisherName "Canonical" -Offer "UbuntuServer" -Skus "16.04-LTS" -Version "latest" | Add-AzVMNetworkInterface -Id $nic.Id
+Now create a new VM to combine the previous configurations
+	--> New-AzVM -ResourceGroupName <group name> -Location <eastus> -VM $vmConfig
+Finally, connect to the VM using the public ip address
+	--> Get-AzPublicIpAddress -ResourceGroupName <group name> | Select IpAddress
